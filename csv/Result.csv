@@ -1,0 +1,9 @@
+Campaign ID,Campaign Title,Campaign Objective,Ad Group ID,Ad Group Campaign ID,Ad Group Title,Geo Locations,Start Date,End Date,Ad ID,Ad Title,Ad Ad Group ID,Post ID,Results
+1,Test Campaign1,CLICKS,1,1,Ad group 1,"US, CA",1/1/20,1/10/20,1,Ad 1,1,t2_1,Success
+2,Test Campaign2,IMPRESSIONS,2,2,Ad group 2,"GB, AU, US-CA",1/1/20,1/10/20,2,Ad 2,2,t2_2,Success
+5,Test Campaign1,CLICKS,3,5,Ad group 1,"US, CA",1/1/20,1/10/20,3,Ad 1,3,t2_1,Success
+3,Test Campaign2,IMPRESSIONS,4,3,Ad group 2,"GB, AU, US-CA",1/1/20,1/10/20,4,Ad 2,4,t2_2,Success
+4,Test Campaign1,CLICKS,5,4,Ad group 1,"US, CA",1/1/20,1/10/20,5,Ad 1,5,t2_1,Success
+6,Test Campaign2,IMPRESSIONS,6,6,Ad group 2,"GB, AU, US-CA",1/1/20,1/10/20,6,Ad 2,6,t2_2,Success
+7,Test Campaign1,CLICKS,7,7,Ad group 1,"US, CA",1/1/20,1/10/20,7,Ad 1,7,t2_1,Success
+8,Test Campaign2,IMPRESSIONS,8,8,Ad group 2,"GB, AU, US-CA",1/1/20,1/10/20,8,Ad 2,8,t2_2,Success
