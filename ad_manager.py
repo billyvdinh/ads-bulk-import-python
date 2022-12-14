@@ -5,7 +5,7 @@ from entities.ad_group import AdGroup
 from entities.ad import Ad
 
 
-class AdsManager:
+class AdManager:
     def __init__(self):
         self.campaigns = []
         self.ad_groups = []
@@ -19,6 +19,7 @@ class AdsManager:
             for row in reader:
                 rows.append(row)
 
+        print(rows)
         return rows
 
     def export_result(self):
