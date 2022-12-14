@@ -84,3 +84,12 @@ class AdGroup(object):
 
         self._end_date = end_date
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'campaign_id': self.campaign_id,
+            'title': self.title,
+            'geolocations': self.geolocations,
+            'start_date': self.start_date.strftime('%m/%d/%y'),
+            'end_date': self.end_date.strftime('%m/%d/%y')
+        }

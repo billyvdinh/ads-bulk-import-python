@@ -44,3 +44,9 @@ class Campaign(object):
 
         self._objective = objective
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'objective': self.objective
+        }

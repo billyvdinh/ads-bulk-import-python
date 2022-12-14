@@ -94,6 +94,117 @@ class AdsManagerTest(unittest.TestCase):
             self.ad_manager.load_row(test_row)
         self.assertEqual(str(e.exception), "time data '1//20' does not match format '%m/%d/%y'")
 
+    def test_success_get_all_entities(self):
+        row = {
+            'Campaign ID': '',
+            'Campaign Title': 'Test Campaign2',
+            'Campaign Objective': 'IMPRESSIONS',
+            'Ad Group ID': '',
+            'Ad Group Campaign ID': '',
+            'Ad Group Title': 'Ad group 2',
+            'Geo Locations': 'GB, AU, US-CA',
+            'Start Date': '1/1/20',
+            'End Date': '1/10/20',
+            'Ad ID': '',
+            'Ad Title': 'Ad 2',
+            'Ad Ad Group ID': '',
+            'Post ID': 't2_2'
+        }
 
+        for i in range(100):
+            self.ad_manager.load_row(row)
+
+        entities = self.ad_manager.get_entities()
+        self.assertEqual(len(entities['campaign']), 100)
+        self.assertEqual(len(entities['ad_group']), 100)
+        self.assertEqual(len(entities['ad']), 100)
+
+    def test_success_get_entity_with_type_and_id(self):
+        row = {
+            'Campaign ID': '',
+            'Campaign Title': 'Test Campaign2',
+            'Campaign Objective': 'IMPRESSIONS',
+            'Ad Group ID': '',
+            'Ad Group Campaign ID': '',
+            'Ad Group Title': 'Ad group 2',
+            'Geo Locations': 'GB, AU, US-CA',
+            'Start Date': '1/1/20',
+            'End Date': '1/10/20',
+            'Ad ID': '',
+            'Ad Title': 'Ad 2',
+            'Ad Ad Group ID': '',
+            'Post ID': 't2_2'
+        }
+
+        for i in range(1, 100):
+            self.ad_manager.load_row(row)
+
+        for i in range(1, 100):
+            entities = self.ad_manager.get_entities('campaign', i)
+            self.assertEqual(len(entities['campaign']), 1)
+
+            entities = self.ad_manager.get_entities('ad_group', i)
+            self.assertEqual(len(entities['ad_group']), 1)
+
+            entities = self.ad_manager.get_entities('ad', i)
+            self.assertEqual(len(entities['ad']), 1)
+
+    def test_exception_get_entity_with_type_or_id(self):
+        row = {
+            'Campaign ID': '',
+            'Campaign Title': 'Test Campaign2',
+            'Campaign Objective': 'IMPRESSIONS',
+            'Ad Group ID': '',
+            'Ad Group Campaign ID': '',
+            'Ad Group Title': 'Ad group 2',
+            'Geo Locations': 'GB, AU, US-CA',
+            'Start Date': '1/1/20',
+            'End Date': '1/10/20',
+            'Ad ID': '',
+            'Ad Title': 'Ad 2',
+            'Ad Ad Group ID': '',
+            'Post ID': 't2_2'
+        }
+
+        for i in range(1, 100):
+            self.ad_manager.load_row(row)
+
+        with self.assertRaises(Exception) as e:
+            self.ad_manager.get_entities('campaign')
+        self.assertEqual(str(e.exception), "Both entity type and entity id must be specified")
+
+        with self.assertRaises(Exception) as e:
+            self.ad_manager.get_entities(50)
+        self.assertEqual(str(e.exception), "Both entity type and entity id must be specified")
+
+    def test_exception_get_entity_with_invalid_type_and_id(self):
+        row = {
+            'Campaign ID': '',
+            'Campaign Title': 'Test Campaign2',
+            'Campaign Objective': 'IMPRESSIONS',
+            'Ad Group ID': '',
+            'Ad Group Campaign ID': '',
+            'Ad Group Title': 'Ad group 2',
+            'Geo Locations': 'GB, AU, US-CA',
+            'Start Date': '1/1/20',
+            'End Date': '1/10/20',
+            'Ad ID': '',
+            'Ad Title': 'Ad 2',
+            'Ad Ad Group ID': '',
+            'Post ID': 't2_2'
+        }
+
+        for i in range(1, 100):
+            self.ad_manager.load_row(row)
+
+        with self.assertRaises(Exception) as e:
+            self.ad_manager.get_entities('something', 10)
+        self.assertEqual(str(e.exception), "Invalid entity type")
+
+        # Entity id not exist
+        entities = self.ad_manager.get_entities('campaign', 1000)
+        self.assertEqual(len(entities['campaign']), 0)
+        
+        
 if __name__ == '__main__':
     unittest.main()

@@ -1,4 +1,5 @@
 import csv
+import json
 from datetime import datetime
 from entities.campaign import Campaign
 from entities.ad_group import AdGroup
@@ -135,5 +136,35 @@ class AdManager:
         self.export_result()
         print("Result exported successfully")
 
+    def get_entities(self, entity_type=None, entity_id=None):
+        entities = {}
+        if entity_type is not None and entity_id is not None:
+            entity_map = {
+                'campaign': self.campaigns,
+                'ad_group': self.ad_groups,
+                'ad': self.ads
+            }
+            if entity_type not in entity_map:
+                raise Exception("Invalid entity type")
+
+            entities[entity_type] = []
+            entity = self.get_entity(entity_map[entity_type], entity_id)
+            if entity:
+                entities[entity_type].append(entity.to_dict())
+
+        elif entity_type is None and entity_id is None:
+            campaigns = [campaign.to_dict() for campaign in self.campaigns]
+            ad_groups = [ad_group.to_dict() for ad_group in self.ad_groups]
+            ads = [ad.to_dict() for ad in self.ads]
+            entities['campaign'] = campaigns
+            entities['ad_group'] = ad_groups
+            entities['ad'] = ads
+        else:
+            raise Exception("Both entity type and entity id must be specified")
+
+        return entities
+
     def print(self, path, entity_type, entity_id):
-        pass
+        self.load_csv(path)
+        entities = self.get_entities(entity_type, entity_id)
+        print(json.dumps(entities, indent=4))

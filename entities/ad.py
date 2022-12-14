@@ -1,5 +1,3 @@
-from datetime import datetime
-
 
 class Ad(object):
     def __init__(self, id, ad_group_id, title, post_id):
@@ -57,3 +55,11 @@ class Ad(object):
             raise Exception("post id must be string or None")
 
         self._post_id = post_id
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'ad_group_id': self.ad_group_id,
+            'title': self.title,
+            'post_id': self.post_id
+        }
