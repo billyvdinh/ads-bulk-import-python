@@ -14,7 +14,7 @@ class AdGroup(object):
         self.id = id
         self.campaign_id = campaign_id
         self.title = title
-        self.geolocations = ', '.join(geolocations)
+        self.geolocations = geolocations
         self.start_date = start_date
         self.end_date = end_date
 
