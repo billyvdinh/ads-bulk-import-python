@@ -42,7 +42,7 @@ class Ad(object):
 
     @title.setter
     def title(self, title):
-        if not title and type(title) != str:
+        if title and type(title) != str:
             raise Exception("title must be string or None")
 
         self._title = title
@@ -53,7 +53,7 @@ class Ad(object):
 
     @post_id.setter
     def post_id(self, post_id):
-        if not post_id and type(post_id) != str:
+        if post_id and type(post_id) != str:
             raise Exception("post id must be string or None")
 
         self._post_id = post_id

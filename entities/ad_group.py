@@ -46,7 +46,7 @@ class AdGroup(object):
 
     @title.setter
     def title(self, title):
-        if not title and type(title) != str:
+        if title and type(title) != str:
             raise Exception("title must be string or None")
 
         self._title = title
@@ -57,7 +57,7 @@ class AdGroup(object):
 
     @geolocations.setter
     def geolocations(self, geolocations):
-        if not geolocations and type(geolocations) != list:
+        if geolocations and type(geolocations) != list:
             raise Exception("geolocations must be list or None")
 
         self._geolocations = geolocations
@@ -68,7 +68,7 @@ class AdGroup(object):
 
     @start_date.setter
     def start_date(self, start_date):
-        if not start_date and type(start_date) != datetime:
+        if start_date and type(start_date) != datetime:
             raise Exception("start date must be datetime or None")
 
         self._start_date = start_date
@@ -79,7 +79,7 @@ class AdGroup(object):
 
     @end_date.setter
     def end_date(self, end_date):
-        if not end_date and type(end_date) != datetime:
+        if end_date and type(end_date) != datetime:
             raise Exception("end date must be datetime or None")
 
         self._end_date = end_date

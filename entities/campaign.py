@@ -28,7 +28,7 @@ class Campaign(object):
 
     @title.setter
     def title(self, title):
-        if not title and type(title) != str:
+        if title and type(title) != str:
             raise Exception("title must be string or None")
 
         self._title = title
@@ -39,7 +39,7 @@ class Campaign(object):
 
     @objective.setter
     def objective(self, objective):
-        if not objective and type(objective) != str:
+        if objective and type(objective) != str:
             raise Exception("objective must be string or None")
 
         self._objective = objective
